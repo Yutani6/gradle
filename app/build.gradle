@@ -3,16 +3,36 @@ plugins {
     id 'java-library'
     id 'maven-publish'
 }
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'http://34.206.3.60:8081/repository/maven-releases/'
+        allowInsecureProtocol = true
+        credentials {
+            username = System.getenv('NEXUS_USERNAME')  // CIで環境変数を設定する
+            password = System.getenv('NEXUS_PASSWORD')  // CIで環境変数を設定する
+        }
+    }
+}
+
+configurations {
+    goodNight
+}
+
 dependencies {
     testImplementation libs.junit.jupiter
 
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
     implementation libs.guava
+
+    goodNight group:"good_night", name:"good_night", version:"1.0.0"
 }
 
-repositories {
-    mavenCentral()
+task copyTask(type: Copy) {
+    from configurations.goodNight
+    into "./build/libs"
 }
 
 application {
@@ -24,7 +44,6 @@ tasks.named('test') {
 }
 
 task sourceJar(type : Jar) {
-    dependsOn("build")
     from sourceSets.main.allJava
 }
 

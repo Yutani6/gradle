@@ -24,6 +24,7 @@ tasks.named('test') {
 }
 
 task sourceJar(type : Jar) {
+    dependsOn("build")
     from sourceSets.main.allJava
 }
 
@@ -40,10 +41,8 @@ publishing {
             url 'http://34.206.3.60:8081/repository/maven-releases/'
             allowInsecureProtocol = true
             credentials {
-                //username = System.getenv('NEXUS_USERNAME')  // CIで環境変数を設定する
-                //password = System.getenv('NEXUS_PASSWORD')  // CIで環境変数を設定する
-                username = "" // CIで環境変数を設定する
-                password = ""  // CIで環境変数を設定する
+                username = System.getenv('NEXUS_USERNAME')  // CIで環境変数を設定する
+                password = System.getenv('NEXUS_PASSWORD')  // CIで環境変数を設定する
             }
         }
     }

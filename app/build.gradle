@@ -16,10 +16,6 @@ repositories {
     }
 }
 
-configurations {
-    goodNight
-}
-
 dependencies {
     testImplementation libs.junit.jupiter
 
@@ -27,12 +23,7 @@ dependencies {
 
     implementation libs.guava
 
-    goodNight group:"good_night", name:"good_night", version:"1.0.0"
-}
-
-task copyTask(type: Copy) {
-    from configurations.goodNight
-    into "./build/libs"
+    implementation group: 'good_night', name: 'good_night', version: '1.0.0', ext: 'jar'
 }
 
 application {

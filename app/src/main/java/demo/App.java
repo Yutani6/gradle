@@ -9,13 +9,13 @@ public class App {
         return "Hello World!";
     }
     
-    public String getGoodnight() {
+    public void getGoodnight() {
         GoodNight gn = new GoodNight();
-	gn.main();
+	gn.main(new String[] {"Good Night"});
     }
 
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
-	new App().getGoodnight();;
+	new App().getGoodnight();
     }
 }

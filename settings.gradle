@@ -1,4 +1,3 @@
-
 rootProject.name = 'demo'
 include('app')
-include('good_night')
+include(':sub_app:good_night')

@@ -27,9 +27,9 @@ dependencies {
     implementation group: 'good_night', name: 'good_night', version: '1.0.0', ext: 'jar'
 }
 
-allprojects {
-    version = '1.0'
-}
+//allprojects {
+//    version = '1.0'
+//}
 
 application {
     mainClass = 'demo.App'

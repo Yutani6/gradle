@@ -2,6 +2,7 @@ plugins {
     id 'application'
     id 'java-library'
     id 'maven-publish'
+    id 'net.researchgate.release' version '3.0.2'
 }
 
 repositories {
@@ -55,5 +56,24 @@ publishing {
                 password = System.getenv('NEXUS_PASSWORD')  // CIで環境変数を設定する
             }
         }
+    }
+}
+
+release {
+    failOnCommitNeeded = true
+    failOnPublishNeeded = true
+    failOnSnapshotDependencies = true
+    failOnUnversionedFiles = true
+    failOnUpdateNeeded = true
+    preTagCommitMessage = '[Gradle Release Plugin] - pre tag commit: '
+    tagCommitMessage = '[Gradle Release Plugin] - creating tag: '
+    newVersionCommitMessage = '[Gradle Release Plugin] - new version commit: '
+    tagTemplate = '${version}'
+    versionPropertyFile = 'gradle.properties'
+    snapshotSuffix = '-SNAPSHOT'
+    buildTasks = []
+    
+    git {
+        requireBranch.set('main')
     }
 }

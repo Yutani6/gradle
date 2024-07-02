@@ -2,6 +2,7 @@ plugins {
     id 'application'
     id 'java-library'
     id 'maven-publish'
+    id 'net.researchgate.release' version '3.0.2'
 }
 
 repositories {
@@ -58,3 +59,24 @@ publishing {
         }
     }
 }
+
+release {
+    failOnCommitNeeded = true
+    failOnPublishNeeded = true
+    failOnSnapshotDependencies = true
+    failOnUnversionedFiles = true
+    failOnUpdateNeeded = true
+    preTagCommitMessage = '[Gradle Release Plugin] - pre tag commit app: '
+    tagCommitMessage = '[Gradle Release Plugin] - creating tag app: '
+    newVersionCommitMessage = '[Gradle Release Plugin] - app new version commit: '
+    tagTemplate = '${version}'
+    versionPropertyFile = 'gradle.properties'
+    snapshotSuffix = '-SNAPSHOT'
+    buildTasks = []
+    
+    git {
+        requireBranch.set('add_sample')
+    }
+}
+
+afterReleaseBuild.dependsOn sourceJar

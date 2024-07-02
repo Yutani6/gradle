@@ -58,4 +58,4 @@ publishing {
         }
     }
 }
-afterReleaseBuild.dependsOn sourceJar
+

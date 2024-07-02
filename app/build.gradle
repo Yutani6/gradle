@@ -26,7 +26,7 @@ dependencies {
 
     implementation project(':sub_app:good_night')
 
-    implementation group: 'good_night', name: 'good_night', version: '0.0.1', ext: 'jar'
+    //implementation group: 'good_night', name: 'good_night', version: '0.0.1', ext: 'jar'
 }
 
 application {

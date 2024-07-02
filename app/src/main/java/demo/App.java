@@ -6,7 +6,7 @@ import good_night.GoodNight;
 
 public class App {
     public String getGreeting() {
-        return "Hello World!";
+        return "Hello World!!";
     }
     
     public void getGoodnight() {

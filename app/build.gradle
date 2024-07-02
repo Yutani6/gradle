@@ -23,6 +23,8 @@ dependencies {
 
     implementation libs.guava
 
+    implementation project(':sub_app:good_night')
+
     implementation group: 'good_night', name: 'good_night', version: '1.0.0', ext: 'jar'
 }
 

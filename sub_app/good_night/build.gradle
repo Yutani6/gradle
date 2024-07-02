@@ -47,3 +47,4 @@ publishing {
         }
     }
 }
+afterReleaseBuild.dependsOn sourceJar

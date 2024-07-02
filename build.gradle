@@ -1,8 +1,8 @@
 plugins {
   id 'net.researchgate.release' version '3.0.2'
-}
-
-allprojects {
+  id 'application'
+  id 'maven-publish'
+  id 'java-library'
 }
 
 release {
@@ -23,3 +23,29 @@ release {
         requireBranch.set('add_sample')
     }
 }
+
+task sourceJar(type : Jar) {
+    from sourceSets.main.allJava
+}
+
+afterReleaseBuild.dependsOn sourceJar
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifact sourceJar {
+            }
+        }
+    }
+    repositories {
+        maven {
+            url 'http://34.206.3.60:8081/repository/maven-releases/'
+            allowInsecureProtocol = true
+            credentials {
+                username = System.getenv('NEXUS_USERNAME')  // CIで環境変数を設定する
+                password = System.getenv('NEXUS_PASSWORD')  // CIで環境変数を設定する
+            }
+        }
+    }
+}
+
